@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/boss.gd" id="1_boss"]
+[ext_resource type="Texture2D" path="res://Sprites/Boss_Sprites/zues_1.webp" id="2_face"]
+[ext_resource type="Texture2D" path="res://Sprites/Boss_Sprites/Lightning_attack_mode_zeus/zeus_idle/zues_idle_1.webp" id="3_figure"]
+
+[node name="Boss" type="Node2D"]
+script = ExtResource("1_boss")
+
+[node name="Face" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("2_face")
+
+[node name="Orbit" type="Node2D" parent="."]
+
+[node name="Figure" type="Sprite2D" parent="."]
+texture_filter = 1
+modulate = Color(1, 1, 1, 0)
+position = Vector2(60, 20)
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("3_figure")

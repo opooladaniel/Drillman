@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://duers85wlm4f4"]
+
+[ext_resource type="Script" path="res://Scripts/drill_pickup.gd" id="1_pickup"]
+
+[sub_resource type="Gradient" id="Gradient_twinkle"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 0.85, 0, 1, 0.95, 0.6, 1, 1, 0.8, 0.4, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pickup"]
+radius = 42.0
+
+[node name="DrillPickup" type="Area2D"]
+script = ExtResource("1_pickup")
+
+[node name="Twinkles" type="CPUParticles2D" parent="."]
+amount = 14
+lifetime = 0.9
+emission_shape = 1
+emission_sphere_radius = 48.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_twinkle")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pickup")

@@ -1,0 +1,15 @@
+# Godot 4+ cache (rebuilt automatically when the project opens)
+.godot/
+*.translation
+
+# Exports and scratch files
+Builds/
+_to_delete/
+export_credentials.cfg
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Copyrighted soundtrack (One Punch Man / Dragon Ball Z) - not ours to redistribute
+Audio/Backing_Track/

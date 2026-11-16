@@ -1,0 +1,240 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://Scripts/intro_cutscene.gd" id="1_cut"]
+[ext_resource type="Theme" path="res://Themes/ui_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://Sprites/Background_Sprites/Space_Background.webp" id="3_stars"]
+[ext_resource type="Texture2D" path="res://Images/space_galaxy_sheet.webp" id="4_galaxy"]
+[ext_resource type="Texture2D" path="res://Images/Spaceship Launch.png" id="5_ship"]
+[ext_resource type="Texture2D" path="res://Sprites/Background_Sprites/Planet/planet_spritesheet.png" id="6_planet"]
+[ext_resource type="Texture2D" path="res://Sprites/Human_Sprites/spaceman_front.png" id="7_spaceman"]
+[ext_resource type="Texture2D" path="res://Sprites/Drill_Sprites/brown_drill.webp" id="8_drill"]
+[ext_resource type="Texture2D" path="res://Sprites/Human_Sprites/spaceman_head.webp" id="9_head"]
+[ext_resource type="AudioStream" path="res://Audio/intro_narration.MP3" id="10_audio"]
+
+[sub_resource type="AtlasTexture" id="Atlas_head"]
+atlas = ExtResource("9_head")
+region = Rect2(8, 26, 114, 102)
+
+[sub_resource type="Gradient" id="Gradient_profit"]
+colors = PackedColorArray(0.45, 0.16, 0.03, 1, 0.08, 0.02, 0.01, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTex_profit"]
+gradient = SubResource("Gradient_profit")
+fill = 1
+fill_from = Vector2(0.5, 0.45)
+fill_to = Vector2(1, 1)
+
+[node name="IntroCutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_cut")
+
+[node name="Black" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Stars" type="Sprite2D" parent="Visuals"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("3_stars")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 2560, 721)
+texture_repeat = 2
+
+[node name="Galaxy" type="Sprite2D" parent="Visuals"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("4_galaxy")
+hframes = 6
+vframes = 5
+
+[node name="Ship" type="Sprite2D" parent="Visuals"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(640, 360)
+scale = Vector2(0.833333, 0.833333)
+texture = ExtResource("5_ship")
+
+[node name="ProfitBg" type="ColorRect" parent="Visuals"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 1320.0
+offset_bottom = 760.0
+color = Color(1, 1, 1, 1)
+
+[node name="ProfitGradient" type="TextureRect" parent="Visuals/ProfitBg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTex_profit")
+expand_mode = 1
+
+[node name="Logo" type="Node2D" parent="Visuals"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Planet" type="Sprite2D" parent="Visuals/Logo"]
+texture_filter = 1
+position = Vector2(640, 250)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_planet")
+hframes = 10
+vframes = 5
+
+[node name="Title" type="Label" parent="Visuals/Logo"]
+offset_left = 240.0
+offset_top = 330.0
+offset_right = 1040.0
+offset_bottom = 440.0
+pivot_offset = Vector2(400, 55)
+theme_override_colors/font_color = Color(1, 0.72, 0.25, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.05, 0.03, 1)
+theme_override_constants/outline_size = 18
+theme_override_font_sizes/font_size = 96
+text = "OREBIT™"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tagline" type="Label" parent="Visuals/Logo"]
+offset_left = 240.0
+offset_top = 432.0
+offset_right = 1040.0
+offset_bottom = 472.0
+theme_override_colors/font_color = Color(1, 0.88, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "ASTEROID EXTRACTION INITIATIVE"
+horizontal_alignment = 1
+
+[node name="Asteroids" type="Node2D" parent="Visuals"]
+texture_filter = 1
+
+[node name="Spaceman" type="Sprite2D" parent="Visuals"]
+texture_filter = 1
+modulate = Color(1, 1, 1, 0)
+position = Vector2(640, 300)
+scale = Vector2(4, 4)
+texture = ExtResource("7_spaceman")
+
+[node name="Drill" type="Sprite2D" parent="Visuals/Spaceman"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(30, 6)
+rotation = -1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_drill")
+flip_h = true
+
+[node name="Dim" type="ColorRect" parent="Visuals"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 1320.0
+offset_bottom = 760.0
+color = Color(0, 0, 0, 0)
+
+[node name="FinePrint" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 140.0
+offset_top = 470.0
+offset_right = 1140.0
+offset_bottom = 520.0
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 16
+text = "*Exciting new people not guaranteed. Oxygen sold separately. Death voids employment contract."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Flash" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="DialogBox" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -190.0
+offset_right = -40.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Margin" type="MarginContainer" parent="DialogBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 14
+
+[node name="HBox" type="HBoxContainer" parent="DialogBox/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Portrait" type="TextureRect" parent="DialogBox/Margin/HBox"]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 134)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("Atlas_head")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="DialogBox/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+vertical_alignment = 1
+autowrap_mode = 3
+visible_characters_behavior = 1
+
+[node name="SkipHint" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.55)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -340.0
+offset_top = 14.0
+offset_right = -18.0
+offset_bottom = 44.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 18
+text = "Press Enter / Esc to skip"
+horizontal_alignment = 2
+
+[node name="Fade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Narration" type="AudioStreamPlayer" parent="."]
+bus = &"Voice"
+stream = ExtResource("10_audio")

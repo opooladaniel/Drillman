@@ -1,0 +1,142 @@
+[gd_scene load_steps=27 format=3 uid="uid://kicjex6yvbxr"]
+
+[ext_resource type="Texture2D" uid="uid://dh8hhxdqm75w1" path="res://Sprites/Background_Sprites/Space_Background.webp" id="1_bg"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://cgaehhmhaxrob" path="res://Sprites/Asteriod_Sprites/Purple_Astroid.webp" id="4_purple"]
+[ext_resource type="Texture2D" uid="uid://28w0ujckinvd" path="res://Sprites/Asteriod_Sprites/blue_astroid.webp" id="5_blue"]
+[ext_resource type="Texture2D" uid="uid://bi1sn5shcn7nc" path="res://Sprites/Asteriod_Sprites/green_astroid.webp" id="6_green"]
+[ext_resource type="Texture2D" uid="uid://bvgrrrcol4xtr" path="res://Sprites/Asteriod_Sprites/red_astroid.webp" id="7_red"]
+[ext_resource type="Texture2D" uid="uid://ca1udl0d0sw74" path="res://Sprites/Asteriod_Sprites/regular_astroid.webp" id="8_regular"]
+[ext_resource type="Script" path="res://Scripts/asteroid_spawner.gd" id="9_spawner"]
+[ext_resource type="Texture2D" uid="uid://tfru4655vy2n" path="res://Sprites/Human_Sprites/spaceman-1.png.webp" id="10_run1"]
+[ext_resource type="Texture2D" uid="uid://d3sonm4uivyyh" path="res://Sprites/Human_Sprites/spaceman-2.png.webp" id="11_run2"]
+[ext_resource type="Texture2D" uid="uid://b1a1hd3s0ax2j" path="res://Sprites/Drill_Sprites/brown_drill.webp" id="12_drill"]
+[ext_resource type="PackedScene" path="res://Scenes/hud.tscn" id="13_hud"]
+[ext_resource type="Texture2D" uid="uid://bsdeohnet2oqb" path="res://Sprites/Asteriod_Sprites/purple_astroid_white.webp" id="14_wpurple"]
+[ext_resource type="Texture2D" uid="uid://crcwjs8w4fixt" path="res://Sprites/Asteriod_Sprites/blue_astroid_white.webp" id="15_wblue"]
+[ext_resource type="Texture2D" uid="uid://cd4rkxyavqu0v" path="res://Sprites/Asteriod_Sprites/green_astroid_white.webp" id="16_wgreen"]
+[ext_resource type="Texture2D" uid="uid://bimdgelfkyndc" path="res://Sprites/Asteriod_Sprites/red_astroid_white.webp" id="17_wred"]
+[ext_resource type="Texture2D" uid="uid://cr8icattadc46" path="res://Sprites/Asteriod_Sprites/regular_astroid_white.webp" id="18_wregular"]
+[ext_resource type="Script" path="res://Scripts/drill_upgrade_spawner.gd" id="19_upgrades"]
+[ext_resource type="Script" path="res://Scripts/game_speed.gd" id="20_speed"]
+[ext_resource type="Script" path="res://Scripts/boss_trigger.gd" id="21_boss"]
+[ext_resource type="Script" path="res://Scripts/angel_spawner.gd" id="22_angels"]
+[ext_resource type="Script" path="res://Scripts/sun_spawner.gd" id="23_suns"]
+[ext_resource type="Script" path="res://Scripts/music.gd" id="24_music"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_run"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_run1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_run2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_sparks"]
+offsets = PackedFloat32Array(0, 0.4, 1)
+colors = PackedColorArray(1, 0.95, 0.6, 1, 1, 0.6, 0.15, 1, 0.8, 0.2, 0.05, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(42, 78)
+
+[node name="Main" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Space" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0)
+motion_mirroring = Vector2(2560, 0)
+
+[node name="TileA" type="Sprite2D" parent="ParallaxBackground/Space"]
+texture = ExtResource("1_bg")
+centered = false
+
+[node name="TileB" type="Sprite2D" parent="ParallaxBackground/Space"]
+position = Vector2(1280, 0)
+texture = ExtResource("1_bg")
+centered = false
+flip_h = true
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(320, 520)
+script = ExtResource("2_player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_run")
+animation = &"run"
+autoplay = "run"
+
+[node name="DrillPivot" type="Node2D" parent="Player/AnimatedSprite2D"]
+position = Vector2(24, -2)
+
+[node name="Drill" type="Sprite2D" parent="Player/AnimatedSprite2D/DrillPivot"]
+position = Vector2(30.6667, 0.6667)
+rotation = -1.5708
+scale = Vector2(0.6667, 0.6667)
+texture = ExtResource("12_drill")
+flip_h = true
+
+[node name="DrillHitbox" type="Area2D" parent="Player/AnimatedSprite2D/DrillPivot/Drill" groups=["drill"]]
+
+[node name="Shape" type="CollisionPolygon2D" parent="Player/AnimatedSprite2D/DrillPivot/Drill/DrillHitbox"]
+polygon = PackedVector2Array(-37, -46, 37, -46, 37, -4, 1, 63, -35, -4)
+
+[node name="Sparks" type="CPUParticles2D" parent="Player/AnimatedSprite2D/DrillPivot/Drill"]
+position = Vector2(1, 60)
+emitting = false
+amount = 64
+lifetime = 0.35
+direction = Vector2(0, -1)
+spread = 65.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 180.0
+initial_velocity_max = 380.0
+damping_min = 40.0
+damping_max = 80.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_sparks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(3, 0)
+shape = SubResource("RectangleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(320, -160)
+limit_top = 0
+limit_bottom = 720
+
+[node name="AsteroidSpawner" type="Node2D" parent="."]
+texture_filter = 1
+script = ExtResource("9_spawner")
+textures = Array[Texture2D]([ExtResource("4_purple"), ExtResource("5_blue"), ExtResource("6_green"), ExtResource("7_red"), ExtResource("8_regular")])
+white_textures = Array[Texture2D]([ExtResource("14_wpurple"), ExtResource("15_wblue"), ExtResource("16_wgreen"), ExtResource("17_wred"), ExtResource("18_wregular")])
+
+[node name="DrillUpgradeSpawner" type="Node2D" parent="."]
+texture_filter = 1
+script = ExtResource("19_upgrades")
+
+[node name="GameSpeed" type="Node" parent="."]
+script = ExtResource("20_speed")
+
+[node name="BossTrigger" type="Node" parent="."]
+script = ExtResource("21_boss")
+
+[node name="AngelSpawner" type="Node2D" parent="."]
+script = ExtResource("22_angels")
+
+[node name="SunSpawner" type="Node2D" parent="."]
+script = ExtResource("23_suns")
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource("24_music")
+
+[node name="HUD" parent="." instance=ExtResource("13_hud")]
