@@ -86,7 +86,7 @@ docs/      README images (ignored by Godot)
 
 ## Credits
 
-**Team:** *(add your team here)*
+**Made by Daniel Opoola and Emmanuel Opoola**, a brother duo.
 
 ### Music
 The soundtrack is from *One Punch Man* and *Dragon Ball Z Dokkan Battle*, and belongs to its respective owners. It isn't distributed with this project.
