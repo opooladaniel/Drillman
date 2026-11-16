@@ -16,8 +16,7 @@ You're an employee of OREBIT™, sent into the cosmos with a drill to meet ever-
 
 ## Play
 
-- **In your browser:** *(add your itch.io link here)*
-- **Trailer:** *(add your YouTube link here)*
+**[▶ Play DrillMan in your browser on itch.io](https://moonfangx2.itch.io/drillman)**
 
 ## Controls
 
@@ -66,6 +65,8 @@ The background music isn't in this repo because it's copyrighted. To hear it, pu
 - `One Punch Man OST - The Cyborg Fight (Genos' Theme).mp3`
 - `Dragon Ball Z Dokkan Battle_ STR Super Saiyan 3 Goku Finish Skill OST (Extended).mp3`
 
+You can find both songs through the soundtrack links in [Credits](#credits).
+
 ### Web export
 
 The project includes a **Web** export preset. Export from **Project → Export → Web**, then zip the output folder for itch.io. On itch.io, turn on **SharedArrayBuffer support**, which Godot 4.2 web builds need.
@@ -85,6 +86,23 @@ docs/      README images (ignored by Godot)
 
 ## Credits
 
-*(Add your team here)*
+**Team:** *(add your team here)*
 
+### Music
 The soundtrack is from *One Punch Man* and *Dragon Ball Z Dokkan Battle*, and belongs to its respective owners. It isn't distributed with this project.
+- [Soundtrack source 1](https://www.youtube.com/watch?v=BJ0EERmmlB0)
+- [Soundtrack source 2](https://www.youtube.com/watch?v=V3GLOM3pPWw)
+
+### Sound effects
+- [Boss sound effects](https://youtu.be/6-96pqXz7uo)
+- [Explosion](https://www.youtube.com/watch?v=_pfZ8A4qKhs)
+- [Bow and arrow](https://youtu.be/jndrGgGqibI)
+- Drill: [hum](https://www.youtube.com/watch?v=q0GJpH7gtRk), [impact](https://youtu.be/aobU94B3uS8)
+
+### Art
+- Boss space background: [Space Backgrounds 3](https://opengameart.org/content/space-backgrounds-3) on OpenGameArt
+- Drill sprite base: [8-bit golden drill](https://www.vecteezy.com/png/19797305-an-8-bit-retro-styled-pixel-art-illustration-of-a-golden-drill) on Vecteezy
+- Planets: [Pixel Planet Generator](https://deep-fold.itch.io/pixel-planet-generator) by Deep-Fold
+
+### Inspiration
+- The Ultimate drill attack is inspired by *Gurren Lagann* and this [Giga Drill Break sprite sheet](https://www.deviantart.com/moralde10/art/Giga-Drill-Break-Sheet-211655798) by moralde10.
